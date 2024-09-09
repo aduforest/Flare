@@ -1,4 +1,4 @@
-export const ValidateProps = {
+const ValidateProps = {
   user: {
     username: { type: 'string', minLength: 4, maxLength: 20 },
     name: { type: 'string', minLength: 1, maxLength: 50 },
@@ -13,3 +13,5 @@ export const ValidateProps = {
     content: { type: 'string', minLength: 1, maxLength: 280 },
   },
 };
+
+module.exports = { ValidateProps };

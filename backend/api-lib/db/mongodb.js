@@ -1,4 +1,4 @@
-import { MongoClient } from 'mongodb';
+const { MongoClient } = require('mongodb');
 
 const uri = process.env.MONGODB_URI;
 let client;
@@ -22,4 +22,4 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Export a module-scoped MongoClient promise
-export default clientPromise;
+module.exports = clientPromise;

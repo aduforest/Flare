@@ -1,4 +1,5 @@
-import { MongoClient } from 'mongodb';
+const { MongoClient } = require('mongodb');
+
 
 let indexesCreated = false;
 async function createIndexes(client) {
@@ -23,7 +24,7 @@ async function createIndexes(client) {
   return client;
 }
 
-export async function getMongoClient() {
+async function getMongoClient() {
   /**
    * Global is used here to maintain a cached connection across hot reloads
    * in development. This prevents connections growing exponentiatlly
@@ -40,7 +41,9 @@ export async function getMongoClient() {
   return global.mongoClientPromise;
 }
 
-export async function getMongoDb() {
+async function getMongoDb() {
   const mongoClient = await getMongoClient();
   return mongoClient.db();
 }
+
+module.exports = { getMongoClient, getMongoDb };

@@ -2,7 +2,7 @@ import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 import { Container, Spacer, Wrapper } from '../../components/Layout';
 import { TextLink } from '../../components/Text';
-import { fetcher } from '@/lib/fetch';
+import { createUser } from '../../pages/api/users/index.js';
 import { useCurrentUser } from '@/lib/user';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -27,15 +27,11 @@ const SignUp = () => {
       e.preventDefault();
       try {
         setIsLoading(true);
-        const response = await fetcher('/api/users', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: emailRef.current.value,
-            name: nameRef.current.value,
-            password: passwordRef.current.value,
-            username: usernameRef.current.value,
-          }),
+        const response = await createUser({
+          email: emailRef.current.value,
+          name: nameRef.current.value,
+          password: passwordRef.current.value,
+          username: usernameRef.current.value,
         });
         mutate({ user: response.user }, false);
         toast.success('Your account has been created');
@@ -48,6 +44,7 @@ const SignUp = () => {
     },
     [mutate, router]
   );
+  
 
   return (
     <Wrapper className={styles.root}>

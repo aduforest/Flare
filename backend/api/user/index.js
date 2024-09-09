@@ -1,16 +1,14 @@
-// backend/api/user/index.js
-import { ValidateProps } from '@/api-lib/constants';
-import { findUserByUsername, updateUserById } from '@/api-lib/db';
-import { auths, validateBody } from '@/api-lib/middlewares';
-import { getMongoDb } from '@/api-lib/mongodb';
-import { ncOpts } from '@/api-lib/nc';
-import { slugUsername } from '@/lib/user';
-import { v2 as cloudinary } from 'cloudinary';
-import multer from 'multer';
-import nc from 'next-connect';
+const { ValidateProps } = require('../../api-lib/constants');
+const { findUserByUsername, updateUserById } = require('../../api-lib/db');
+const { auths, validateBody } = require('../../api-lib/middlewares');
+const { getMongoDb } = require('../../api-lib/mongodb');
+const slugUsername = require('../../lib/user').slugUsername;
+const cloudinary = require('cloudinary').v2;
+const multer = require('multer');
+const express = require('express');
 
 const upload = multer({ dest: '/tmp' });
-const handler = nc(ncOpts);
+const router = express.Router();
 
 // Cloudinary config if applicable
 if (process.env.CLOUDINARY_URL) {
@@ -28,16 +26,16 @@ if (process.env.CLOUDINARY_URL) {
 }
 
 // Middleware for authentication
-handler.use(...auths);
+router.use(...auths);
 
 // GET user route
-handler.get(async (req, res) => {
+router.get('/', async (req, res) => {
   if (!req.user) return res.json({ user: null });
   return res.json({ user: req.user });
 });
 
 // PATCH user route to update user data
-handler.patch(
+router.patch(
   upload.single('profilePicture'),
   validateBody({
     type: 'object',
@@ -50,13 +48,13 @@ handler.patch(
   }),
   async (req, res) => {
     if (!req.user) {
-      req.status(401).end();
+      res.status(401).end();
       return;
     }
 
     const db = await getMongoDb();
     let profilePicture;
-    
+
     if (req.file) {
       const image = await cloudinary.uploader.upload(req.file.path, {
         width: 512,
@@ -65,7 +63,7 @@ handler.patch(
       });
       profilePicture = image.secure_url;
     }
-    
+
     const { name, bio } = req.body;
     let username;
 
@@ -94,10 +92,4 @@ handler.patch(
 );
 
 // Config for file uploads
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
-export default handler;
+module.exports = router;

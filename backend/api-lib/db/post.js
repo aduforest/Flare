@@ -1,7 +1,7 @@
-import { ObjectId } from 'mongodb';
-import { dbProjectionUsers } from './user';
+const { ObjectId } = require('mongodb');
+const { dbProjectionUsers } = require('./user');
 
-export async function findPostById(db, id) {
+async function findPostById(db, id) {
   const posts = await db
     .collection('posts')
     .aggregate([
@@ -23,7 +23,7 @@ export async function findPostById(db, id) {
   return posts[0];
 }
 
-export async function findPosts(db, before, by, limit = 10) {
+async function findPosts(db, before, by, limit = 10) {
   return db
     .collection('posts')
     .aggregate([
@@ -49,7 +49,7 @@ export async function findPosts(db, before, by, limit = 10) {
     .toArray();
 }
 
-export async function insertPost(db, { content, creatorId }) {
+async function insertPost(db, { content, creatorId }) {
   const post = {
     content,
     creatorId,
@@ -59,3 +59,9 @@ export async function insertPost(db, { content, creatorId }) {
   post._id = insertedId;
   return post;
 }
+
+module.exports = {
+  findPostById,
+  findPosts,
+  insertPost,
+};
