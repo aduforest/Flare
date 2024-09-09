@@ -1,6 +1,14 @@
 import bcrypt from 'bcryptjs';
 import { ObjectId } from 'mongodb';
 import normalizeEmail from 'validator/lib/normalizeEmail';
+import clientPromise from './mongodb';
+
+export async function findUserById(userId) {
+  const client = await clientPromise;
+  const db = client.db();
+  const user = await db.collection('users').findOne({ _id: new ObjectId(userId) });
+  return user;
+}
 
 export async function findUserWithEmailAndPassword(db, email, password) {
   email = normalizeEmail(email);
