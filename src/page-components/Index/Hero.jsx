@@ -1,6 +1,6 @@
-import { ButtonLink } from '../../components/Button';
-import { Container, Spacer, Wrapper } from '../../components/Layout';
-import Link from 'next/link';
+// import { ButtonLink } from '../../components/Button';
+// import { Container, Spacer, Wrapper } from '../../components/Layout';
+// import Link from 'next/link';
 import styles from './Hero.module.css';
 
 const Hero = () => {
