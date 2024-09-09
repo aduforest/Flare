@@ -1,7 +1,7 @@
-import { Button } from '@/components/Button';
-import { ButtonLink } from '@/components/Button/Button';
-import { Input } from '@/components/Input';
-import { Spacer, Wrapper } from '@/components/Layout';
+import { Button } from '../../components/Button';
+import { ButtonLink } from '../../components/Button/Button';
+import { Input } from '../../components/Input';
+import { Spacer, Wrapper } from '../../components/Layout';
 import { fetcher } from '@/lib/fetch';
 import Link from 'next/link';
 import { useCallback, useRef, useState } from 'react';

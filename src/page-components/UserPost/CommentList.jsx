@@ -1,7 +1,7 @@
-import { Button } from '@/components/Button';
-import { Comment } from '@/components/Comment';
-import { Container, Spacer } from '@/components/Layout';
-import { Text } from '@/components/Text';
+import { Button } from '../../components/Button';
+import { Comment } from '../../components/Comment';
+import { Container, Spacer } from '../../components/Layout';
+import { Text } from '../../components/Text';
 import { useCommentPages } from '@/lib/comment';
 import styles from './CommentList.module.css';
 

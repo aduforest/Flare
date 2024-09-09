@@ -1,9 +1,9 @@
-import { Avatar } from '@/components/Avatar';
-import { Button } from '@/components/Button';
-import { Input } from '@/components/Input';
-import { Container } from '@/components/Layout';
-import { LoadingDots } from '@/components/LoadingDots';
-import { Text, TextLink } from '@/components/Text';
+import { Avatar } from '../../components/Avatar';
+import { Button } from '../../components/Button';
+import { Input } from '../../components/Input';
+import { Container } from '../../components/Layout';
+import { LoadingDots } from '../../components/LoadingDots';
+import { Text, TextLink } from '../../components/Text';
 import { useCommentPages } from '@/lib/comment';
 import { fetcher } from '@/lib/fetch';
 import { useCurrentUser } from '@/lib/user';

@@ -1,6 +1,6 @@
-import { ButtonLink } from '@/components/Button';
-import { Container, Spacer, Wrapper } from '@/components/Layout';
-import { Text } from '@/components/Text';
+import { ButtonLink } from '../../components/Button';
+import { Container, Spacer, Wrapper } from '../../components/Layout';
+import { Text } from '../../components/Text';
 import Link from 'next/link';
 import styles from './VerifyEmail.module.css';
 
