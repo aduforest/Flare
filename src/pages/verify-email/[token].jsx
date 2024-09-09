@@ -1,6 +1,6 @@
 import { findAndDeleteTokenByIdAndType, updateUserById } from '@/api-lib/db';
 import { getMongoDb } from '@/api-lib/mongodb';
-import { VerifyEmail } from '@/page-components/VerifyEmail';
+import { VerifyEmail } from '../../page-components/VerifyEmail';
 import Head from 'next/head';
 
 export default function EmailVerifyPage({ valid }) {
