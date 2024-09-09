@@ -1,4 +1,5 @@
 import styles from './Avatar.module.css';
+import Image from 'next/image';
 
 const Avatar = ({ size, username, url }) => {
   return (
