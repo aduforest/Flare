@@ -1,6 +1,6 @@
 import { findUserByUsername } from '@/api-lib/db';
 import { getMongoDb } from '@/api-lib/mongodb';
-import { User } from '@/page-components/User';
+import { User } from '../../../page-components/User';
 import Head from 'next/head';
 
 export default function UserPage({ user }) {

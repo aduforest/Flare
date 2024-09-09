@@ -1,4 +1,4 @@
-import { ForgetPasswordIndex } from '@/page-components/ForgetPassword';
+import { ForgetPasswordIndex } from '../../page-components/ForgetPassword';
 import Head from 'next/head';
 
 const ForgetPasswordPage = () => {

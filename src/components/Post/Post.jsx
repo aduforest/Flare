@@ -1,5 +1,5 @@
-import { Avatar } from '@/components/Avatar';
-import { Container } from '@/components/Layout';
+import { Avatar } from '../Avatar';
+import { Container } from '../Layout';
 import { format } from '@lukeed/ms';
 import clsx from 'clsx';
 import Link from 'next/link';
