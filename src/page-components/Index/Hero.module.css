@@ -1,5 +1,5 @@
 .title {
-  font-size: 8rem;
+  font-size: 8rem; /* Large font size for desktop */
   text-align: center;
   font-weight: 800;
   line-height: 1.1;
@@ -46,4 +46,49 @@
   font-size: 1.25rem;
   text-align: center;
   margin: 8px 0 64px;
+}
+
+/* Add media queries for mobile responsiveness */
+@media (max-width: 768px) {
+  .title {
+    font-size: 5rem; /* Smaller font size for tablet/mobile */
+    margin: 16px 0 48px;
+  }
+
+  .buttons {
+    margin: 0 auto 48px;
+  }
+
+  .button {
+    height: 45px;
+    min-width: 180px;
+    padding: 0 20px;
+  }
+
+  .subtitle {
+    font-size: 1.1rem; /* Adjust subtitle size for tablet/mobile */
+    margin: 8px 0 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 3.5rem; /* Further reduce font size for small mobile screens */
+    margin: 12px 0 40px;
+  }
+
+  .buttons {
+    margin: 0 auto 40px;
+  }
+
+  .button {
+    height: 40px;
+    min-width: 160px;
+    padding: 0 16px;
+  }
+
+  .subtitle {
+    font-size: 1rem; /* Smaller font size for the subtitle on small screens */
+    margin: 8px 0 40px;
+  }
 }

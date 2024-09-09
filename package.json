@@ -1,7 +1,7 @@
 {
   "name": "nextjs-mongodb-app",
   "version": "1.0.0",
-  "description": "Full fledged app made with Next.JS and MongoDB",
+  "description": "Universal Collectibles (currently in dev)",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
@@ -13,12 +13,12 @@
     "type": "git",
     "url": "git+https://github.com/hoangvvo/nextjs-mongodb-app.git"
   },
-  "author": "Hoang Vo (https://hoangvvo.com)",
+  "author": "Alex Duforest",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hoangvvo/nextjs-mongodb-app/issues"
+    "url": "https://github.com/"
   },
-  "homepage": "https://github.com/hoangvvo/nextjs-mongodb-app#readme",
+  "homepage": "https://github.com/",
   "dependencies": {
     "@lukeed/ms": "^2.0.0",
     "ajv": "^8.11.0",
