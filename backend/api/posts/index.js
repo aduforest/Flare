@@ -2,10 +2,9 @@ import { ValidateProps } from '@/api-lib/constants';
 import { findPosts, insertPost } from '@/api-lib/db';
 import { auths, validateBody } from '@/api-lib/middlewares';
 import { getMongoDb } from '@/api-lib/mongodb';
-import { ncOpts } from '@/api-lib/nc';
-import nc from 'next-connect';
+import nextConnect from 'next-connect';
 
-const handler = nc(ncOpts);
+const handler = nextConnect();
 
 handler.get(async (req, res) => {
   const db = await getMongoDb();
@@ -17,7 +16,7 @@ handler.get(async (req, res) => {
     req.query.limit ? parseInt(req.query.limit, 10) : undefined
   );
 
-  res.json({ posts });
+  return res.json({ posts });
 });
 
 handler.post(

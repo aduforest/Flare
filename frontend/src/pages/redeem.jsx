@@ -1,15 +1,15 @@
-import { Redemption } from '../page-components/Collectibles';
+import { Redemption } from '../page-components/Collectibles/Redemption.jsx';
 import Head from 'next/head';
 
-const FeedPage = () => {
+const RedeemPage = () => {
   return (
     <>
       <Head>
-        <title>Feed</title>
+        <title>Redeem</title>
       </Head>
       <Redemption />
     </>
   );
 };
 
-export default FeedPage;
+export default RedeemPage;

@@ -4,7 +4,7 @@ const { findUserByEmail, findUserByUsername, insertUser } = require('../../api-l
 const { getMongoDb } = require('../../api-lib/mongodb');
 const isEmail = require('validator/lib/isEmail');
 const normalizeEmail = require('validator/lib/normalizeEmail');
-const slug = require('slug');  // Use the `slug` package directly in the backend
+const slug = require('slug');
 
 const router = express.Router();
 

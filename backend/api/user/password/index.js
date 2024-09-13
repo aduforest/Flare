@@ -1,14 +1,15 @@
-import { ValidateProps } from '@/api-lib/constants';
-import { updateUserPasswordByOldPassword } from '@/api-lib/db';
-import { auths, validateBody } from '@/api-lib/middlewares';
-import { getMongoDb } from '@/api-lib/mongodb';
-import { ncOpts } from '@/api-lib/nc';
-import nc from 'next-connect';
+const { ValidateProps } = require('../../../api-lib/constants');
+const { updateUserPasswordByOldPassword } = require('../../../api-lib/db');
+const { auths, validateBody } = require('../../../api-lib/middlewares');
+const { getMongoDb } = require('../../../api-lib/mongodb');
+const express = require('express');
+const router = express.Router();
 
-const handler = nc(ncOpts);
-handler.use(...auths);
+// Middleware for authentication
+router.use(...auths);
 
-handler.put(
+// PUT handler to update password
+router.put(
   validateBody({
     type: 'object',
     properties: {
@@ -20,8 +21,7 @@ handler.put(
   }),
   async (req, res) => {
     if (!req.user) {
-      res.status(401).end();
-      return;
+      return res.status(401).end();
     }
 
     const db = await getMongoDb();
@@ -35,14 +35,13 @@ handler.put(
     );
 
     if (!success) {
-      res.status(401).json({
+      return res.status(401).json({
         error: { message: 'The old password you entered is incorrect.' },
       });
-      return;
     }
 
     res.status(204).end();
   }
 );
 
-export default handler;
+module.exports = router;

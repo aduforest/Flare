@@ -1,9 +1,12 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const usersRoute = require('./api/users'); // Import the users route
-const userRoute = require('./api/user'); // Import the single user route
+const session = require('express-session');
+const usersRoute = require('./api/users');
+const userRoute = require('./api/user');
+const authRoute = require('./api/auth');
 const passwordRoute = require('./api/user/password');
+
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -14,20 +17,27 @@ app.use(cors({
 }));
 app.use(express.json());
 
+// Session middleware
+app.use(session({
+  secret: 'your-secret-key', // Change this to a secure key
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: process.env.NODE_ENV === 'production' }
+}));
+
 // Test route
 app.get('/', (req, res) => {
   res.send('Backend is running!');
 });
 
-// Register /api/users route
+// Register routes
 app.use('/api/users', usersRoute);
-
-// Register /api/user route
 app.use('/api/user', userRoute);
-
 app.use('/api/user/password', passwordRoute);
+app.use('/api/auth', authRoute);
 
 // Start server
 app.listen(port, () => {
   console.log(`Backend server is running on port ${port}`);
 });
+

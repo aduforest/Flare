@@ -3,7 +3,7 @@ import { ButtonLink } from '../../components/Button/Button';
 import { Input } from '../../components/Input';
 import { Spacer, Wrapper } from '../../components/Layout';
 import { TextLink } from '../../components/Text';
-import { fetcher } from '@/lib/fetch';
+import { loginUser } from '../../pages/api/auth/index.js';
 import { useCurrentUser } from '@/lib/user';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -14,28 +14,23 @@ import styles from './Auth.module.css';
 const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
-
   const [isLoading, setIsLoading] = useState(false);
-
   const { data: { user } = {}, mutate, isValidating } = useCurrentUser();
   const router = useRouter();
+
   useEffect(() => {
     if (isValidating) return;
-    if (user) router.replace('/feed');
+    if (user) router.replace('/');
   }, [user, router, isValidating]);
 
   const onSubmit = useCallback(
     async (event) => {
-      setIsLoading(true);
       event.preventDefault();
+      setIsLoading(true);
       try {
-        const response = await fetcher('/api/auth', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: emailRef.current.value,
-            password: passwordRef.current.value,
-          }),
+        const response = await loginUser({
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
         });
         mutate({ user: response.user }, false);
         toast.success('You have been logged in.');

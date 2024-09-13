@@ -44,15 +44,24 @@ const UserMenu = ({ user, mutate }) => {
 
   const onSignOut = useCallback(async () => {
     try {
-      await fetcher('/api/auth', {
+      // Directly call fetcher for the sign-out API
+      await fetcher(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth`, {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
+  
       toast.success('You have been signed out');
       mutate({ user: null });
+      router.replace('/');
     } catch (e) {
-      toast.error(e.message);
+      toast.error('Failed to sign out. Please try again.');
     }
-  }, [mutate]);
+  }, [mutate, router]);
+  
+  
+  
 
   return (
     <div className={styles.user}>
