@@ -6,7 +6,6 @@ import {
 } from '@/api-lib/db/collectible';
 import { getMongoDb } from '@/api-lib/mongodb';
 import { auths, validateBody } from '@/api-lib/middlewares';
-import { ncOpts } from '@/api-lib/nc';
 import nc from 'next-connect';
 
 const handler = nc();
@@ -41,11 +40,9 @@ handler.post(
     });
 
     if (userCollectible) {
-      return res
-        .status(400)
-        .json({
-          error: { message: 'You have already redeemed this collectible' },
-        });
+      return res.status(400).json({
+        error: { message: 'You have already redeemed this collectible' },
+      });
     }
 
     // Redeem the collectible for the user
@@ -54,8 +51,12 @@ handler.post(
       collectibleId: collectible._id,
     });
 
-    res.json({ message: 'Collectible redeemed successfully' });
-  },
+    // Return the collectible ID to the client
+    res.json({
+      message: 'Collectible redeemed successfully',
+      collectibleId: collectible._id,
+    });
+  }
 );
 
 export default handler;

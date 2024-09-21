@@ -50,7 +50,7 @@ const UserCollectiblesPage = () => {
                 <img
                   src={item.collectible.image}
                   alt={item.collectible.name}
-                  className="w-full h-148 object-cover rounded-t-lg"
+                  className="h-80 w-60 object-cover rounded-t-lg"
                 />
                 <div className="p-4">
                   <Text className="text-lg font-semibold">

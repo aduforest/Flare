@@ -7,11 +7,13 @@ import { fetcher } from '../../lib/fetch';
 import { useState } from 'react';
 import { Text } from '../components/Text';
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/router'; // Import useRouter
 
 const RedeemPage = () => {
   const { data: { user } = {} } = useCurrentUser();
   const [code, setCode] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter(); // Initialize router
 
   const onRedeem = async (e) => {
     e.preventDefault();
@@ -21,16 +23,25 @@ const RedeemPage = () => {
 
     setIsLoading(true);
     try {
-      await fetcher('/api/collectibles/redeem', {
+      const response = await fetcher('/api/collectibles/redeem', {
         method: 'POST',
         body: JSON.stringify({ code }),
         headers: { 'Content-Type': 'application/json' },
       });
-      toast.success('Collectible redeemed successfully');
-      setCode('');
+
+      // Check if the response contains the collectibleId
+      if (response.collectibleId) {
+        toast.success('Collectible redeemed successfully');
+        setCode('');
+
+        // Redirect to the collectible's page
+        router.push(`/collectibles/${response.collectibleId}`);
+      } else {
+        throw new Error('Collectible ID not returned from API');
+      }
     } catch (e) {
       console.error(e);
-      toast.error(e.message);
+      toast.error(e.message || 'An error occurred');
     } finally {
       setIsLoading(false);
     }
