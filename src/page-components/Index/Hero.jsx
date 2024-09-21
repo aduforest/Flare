@@ -7,9 +7,8 @@ const Hero = () => {
   return (
     <Wrapper>
       <h1 className={styles.title}>
-        <span className={styles.nextjs}>Universal</span>
+        <span className={styles.nextjs}>Flare</span>
         <span className={styles.mongodb}>Collectibles</span>
-        <span>App</span>
       </h1>
       <Container justifyContent="center" className={styles.buttons}>
         <Container>

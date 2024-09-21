@@ -106,7 +106,7 @@ const Nav = () => {
           justifyContent="space-between"
         >
           <Link href="/">
-            <a className={styles.logo}>UNFT App</a>
+            <a className={styles.logo}>Flare</a>
           </Link>
           <Container>
             {user ? (
