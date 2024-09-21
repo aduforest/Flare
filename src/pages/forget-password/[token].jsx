@@ -20,7 +20,7 @@ export async function getServerSideProps(context) {
   const tokenDoc = await findTokenByIdAndType(
     db,
     context.params.token,
-    'passwordReset'
+    'passwordReset',
   );
 
   return { props: { token: context.params.token, valid: !!tokenDoc } };

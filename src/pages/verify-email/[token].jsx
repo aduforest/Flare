@@ -22,7 +22,7 @@ export async function getServerSideProps(context) {
   const deletedToken = await findAndDeleteTokenByIdAndType(
     db,
     token,
-    'emailVerify'
+    'emailVerify',
   );
 
   if (!deletedToken) return { props: { valid: false } };

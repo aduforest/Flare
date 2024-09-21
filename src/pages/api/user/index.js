@@ -85,7 +85,7 @@ handler.patch(
     });
 
     res.json({ user });
-  }
+  },
 );
 
 export const config = {

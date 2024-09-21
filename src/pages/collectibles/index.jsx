@@ -42,7 +42,10 @@ const UserCollectiblesPage = () => {
       ) : (
         <div className="ml-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {collectibles.map((item) => (
-            <Link href={`/collectibles/${item.collectible._id}`} key={item.collectible._id}>
+            <Link
+              href={`/collectibles/${item.collectible._id}`}
+              key={item.collectible._id}
+            >
               <a className="block shadow hover:shadow-lg transition-shadow duration-200">
                 <img
                   src={item.collectible.image}
@@ -50,7 +53,9 @@ const UserCollectiblesPage = () => {
                   className="w-full h-148 object-cover rounded-t-lg"
                 />
                 <div className="p-4">
-                  <Text className="text-lg font-semibold">{item.collectible.name}</Text>
+                  <Text className="text-lg font-semibold">
+                    {item.collectible.name}
+                  </Text>
                 </div>
               </a>
             </Link>

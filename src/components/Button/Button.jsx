@@ -14,7 +14,7 @@ export const Button = forwardRef(function Button(
     loading,
     disabled,
   },
-  ref
+  ref,
 ) {
   return (
     <button
@@ -23,7 +23,7 @@ export const Button = forwardRef(function Button(
         type && styles[type],
         size && styles[size],
         styles[variant],
-        className
+        className,
       )}
       ref={ref}
       onClick={onClick}
@@ -37,7 +37,7 @@ export const Button = forwardRef(function Button(
 
 export const ButtonLink = forwardRef(function Button(
   { children, type, className, href, onClick, size, variant = 'invert' },
-  ref
+  ref,
 ) {
   return (
     <a
@@ -46,7 +46,7 @@ export const ButtonLink = forwardRef(function Button(
         type && styles[type],
         size && styles[size],
         variant && styles[variant],
-        className
+        className,
       )}
       ref={ref}
       href={href}

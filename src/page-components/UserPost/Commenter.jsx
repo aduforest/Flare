@@ -38,7 +38,7 @@ const CommenterInner = ({ user, post }) => {
         setIsLoading(false);
       }
     },
-    [mutate, post._id]
+    [mutate, post._id],
   );
 
   return (

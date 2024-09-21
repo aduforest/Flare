@@ -8,7 +8,7 @@ const ThemeSwitcher = () => {
     (e) => {
       setTheme(e.currentTarget.value);
     },
-    [setTheme]
+    [setTheme],
   );
   return (
     <select value={theme} onChange={onChange} className={styles.select}>

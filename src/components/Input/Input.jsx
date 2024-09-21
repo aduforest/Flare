@@ -12,10 +12,10 @@ const Input = forwardRef(function Input(
     size,
     ariaLabel,
     required,
-    value,      // Add value prop
-    onChange,   // Add onChange prop
+    value, // Add value prop
+    onChange, // Add onChange prop
   },
-  ref
+  ref,
 ) {
   return (
     <div className={clsx(styles.root, className)}>
@@ -29,8 +29,8 @@ const Input = forwardRef(function Input(
           className={clsx(styles.input, size && styles[size])}
           aria-label={ariaLabel}
           required={required}
-          value={value}         // Pass value to input
-          onChange={onChange}   // Pass onChange to input
+          value={value} // Pass value to input
+          onChange={onChange} // Pass onChange to input
         />
       </label>
     </div>

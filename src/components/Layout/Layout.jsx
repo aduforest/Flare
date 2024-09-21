@@ -13,19 +13,10 @@ const Layout = ({ children }) => {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <meta
-          name="description"
-          content="Universal Collectibles (in dev)"
-        />
+        <meta name="description" content="Universal Collectibles (in dev)" />
         <meta property="og:title" content="Universal Collectibles App" />
-        <meta
-          property="og:description"
-          content="In development"
-        />
-        <meta
-          property="og:image"
-          content="/images/main.jpg"
-        />
+        <meta property="og:description" content="In development" />
+        <meta property="og:image" content="/images/main.jpg" />
       </Head>
       <Nav />
       <main className={styles.main}>{children}</main>

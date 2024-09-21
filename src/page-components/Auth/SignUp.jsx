@@ -46,7 +46,7 @@ const SignUp = () => {
         setIsLoading(false);
       }
     },
-    [mutate, router]
+    [mutate, router],
   );
 
   return (

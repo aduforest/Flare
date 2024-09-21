@@ -60,7 +60,7 @@ handler.post(
         user,
       });
     });
-  }
+  },
 );
 
 export default handler;

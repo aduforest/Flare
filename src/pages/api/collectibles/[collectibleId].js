@@ -9,10 +9,14 @@ const handler = nc(ncOpts);
 handler.get(async (req, res) => {
   const db = await getMongoDb();
 
-  const collectible = await db.collection('collectibles').findOne({ _id: new ObjectId(req.query.collectibleId) });
+  const collectible = await db
+    .collection('collectibles')
+    .findOne({ _id: new ObjectId(req.query.collectibleId) });
 
   if (!collectible) {
-    return res.status(404).json({ error: { message: 'Collectible not found' } });
+    return res
+      .status(404)
+      .json({ error: { message: 'Collectible not found' } });
   }
 
   res.json({ collectible });

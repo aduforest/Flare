@@ -38,7 +38,7 @@ const PosterInner = ({ user }) => {
         setIsLoading(false);
       }
     },
-    [mutate]
+    [mutate],
   );
 
   return (

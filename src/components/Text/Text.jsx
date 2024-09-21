@@ -4,7 +4,7 @@ import styles from './Text.module.css';
 
 export const Text = forwardRef(function Text(
   { color, children, className, as, ...props },
-  ref
+  ref,
 ) {
   const Component = as || 'p';
   return (
@@ -21,7 +21,7 @@ export const Text = forwardRef(function Text(
 
 export const TextLink = forwardRef(function Text(
   { color, children, className, href, onClick, variant },
-  ref
+  ref,
 ) {
   return (
     <a
@@ -30,7 +30,7 @@ export const TextLink = forwardRef(function Text(
         styles.text,
         styles.link,
         variant && styles[variant],
-        className
+        className,
       )}
       href={href}
       ref={ref}

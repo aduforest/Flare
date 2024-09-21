@@ -7,7 +7,7 @@ import styles from './CommentList.module.css';
 
 const CommentList = ({ post }) => {
   const { data, size, setSize, isLoadingMore, isReachingEnd } = useCommentPages(
-    { postId: post._id }
+    { postId: post._id },
   );
 
   const comments = data

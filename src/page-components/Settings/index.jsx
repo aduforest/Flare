@@ -17,7 +17,7 @@ const EmailVerify = ({ user }) => {
       setStatus('loading');
       await fetcher('/api/user/email/verify', { method: 'POST' });
       toast.success(
-        'An email has been sent to your mailbox. Follow the instruction to verify your email.'
+        'An email has been sent to your mailbox. Follow the instruction to verify your email.',
       );
       setStatus('success');
     } catch (e) {
@@ -149,7 +149,7 @@ const AboutYou = ({ user, mutate }) => {
         setIsLoading(false);
       }
     },
-    [mutate]
+    [mutate],
   );
 
   useEffect(() => {

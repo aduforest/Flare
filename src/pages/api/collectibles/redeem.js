@@ -1,5 +1,9 @@
 // pages/api/collectibles/redeem.js
-import { findCollectibleByCode, insertUserCollectible, findUserCollectible } from '@/api-lib/db/collectible';
+import {
+  findCollectibleByCode,
+  insertUserCollectible,
+  findUserCollectible,
+} from '@/api-lib/db/collectible';
 import { getMongoDb } from '@/api-lib/mongodb';
 import { auths, validateBody } from '@/api-lib/middlewares';
 import { ncOpts } from '@/api-lib/nc';
@@ -37,7 +41,11 @@ handler.post(
     });
 
     if (userCollectible) {
-      return res.status(400).json({ error: { message: 'You have already redeemed this collectible' } });
+      return res
+        .status(400)
+        .json({
+          error: { message: 'You have already redeemed this collectible' },
+        });
     }
 
     // Redeem the collectible for the user
@@ -47,7 +55,7 @@ handler.post(
     });
 
     res.json({ message: 'Collectible redeemed successfully' });
-  }
+  },
 );
 
 export default handler;

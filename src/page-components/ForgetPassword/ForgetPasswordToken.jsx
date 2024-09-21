@@ -31,7 +31,7 @@ const NewPassword = ({ token }) => {
         setStatus(undefined);
       }
     },
-    [token]
+    [token],
   );
   return (
     <div className={styles.main}>

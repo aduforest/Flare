@@ -45,7 +45,7 @@ const Login = () => {
         setIsLoading(false);
       }
     },
-    [mutate]
+    [mutate],
   );
 
   return (

@@ -12,7 +12,7 @@ const Textarea = forwardRef(function TextArea(
     ariaLabel,
     required,
   },
-  ref
+  ref,
 ) {
   return (
     <div className={clsx(styles.root, className)}>

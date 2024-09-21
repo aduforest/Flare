@@ -33,7 +33,9 @@ export async function insertUserCollectible(db, { userId, collectibleId }) {
     collectibleId: new ObjectId(collectibleId),
     redeemedAt: new Date(),
   };
-  const { insertedId } = await db.collection('user_collectibles').insertOne(doc);
+  const { insertedId } = await db
+    .collection('user_collectibles')
+    .insertOne(doc);
   doc._id = insertedId;
   return doc;
 }

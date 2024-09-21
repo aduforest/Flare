@@ -46,14 +46,14 @@ export async function updateUserById(db, id, data) {
     .findOneAndUpdate(
       { _id: new ObjectId(id) },
       { $set: data },
-      { returnDocument: 'after', projection: { password: 0 } }
+      { returnDocument: 'after', projection: { password: 0 } },
     )
     .then(({ value }) => value);
 }
 
 export async function insertUser(
   db,
-  { email, originalPassword, bio = '', name, profilePicture, username }
+  { email, originalPassword, bio = '', name, profilePicture, username },
 ) {
   const user = {
     emailVerified: false,
@@ -75,7 +75,7 @@ export async function updateUserPasswordByOldPassword(
   db,
   id,
   oldPassword,
-  newPassword
+  newPassword,
 ) {
   const user = await db.collection('users').findOne(new ObjectId(id));
   if (!user) return false;

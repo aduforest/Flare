@@ -29,7 +29,9 @@ const CollectibleDetailPage = () => {
   return (
     <div>
       <div className="max-w-xl mx-auto rounded-lg shadow p-6">
-        <h1 className="text-3xl font-bold mb-4 text-center">{collectible.name}</h1>
+        <h1 className="text-3xl font-bold mb-4 text-center">
+          {collectible.name}
+        </h1>
         <img
           src={collectible.image}
           alt={collectible.name}

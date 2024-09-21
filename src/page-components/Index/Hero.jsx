@@ -24,9 +24,7 @@ const Hero = () => {
           </Link>
         </Container>
       </Container>
-      <p className={styles.subtitle}>
-        Digital Sports Collectibles Reimagined
-      </p>
+      <p className={styles.subtitle}>Digital Sports Collectibles Reimagined</p>
     </Wrapper>
   );
 };

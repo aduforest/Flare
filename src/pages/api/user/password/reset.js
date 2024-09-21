@@ -54,7 +54,7 @@ handler.post(
     });
 
     res.status(204).end();
-  }
+  },
 );
 
 handler.put(
@@ -73,7 +73,7 @@ handler.put(
     const deletedToken = await findAndDeleteTokenByIdAndType(
       db,
       req.body.token,
-      'passwordReset'
+      'passwordReset',
     );
     if (!deletedToken) {
       res.status(403).end();
@@ -82,10 +82,10 @@ handler.put(
     await UNSAFE_updateUserPassword(
       db,
       deletedToken.creatorId,
-      req.body.password
+      req.body.password,
     );
     res.status(204).end();
-  }
+  },
 );
 
 export default handler;

@@ -32,7 +32,7 @@ handler.put(
       db,
       req.user._id,
       oldPassword,
-      newPassword
+      newPassword,
     );
 
     if (!success) {
@@ -43,7 +43,7 @@ handler.put(
     }
 
     res.status(204).end();
-  }
+  },
 );
 
 export default handler;
