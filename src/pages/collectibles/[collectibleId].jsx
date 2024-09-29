@@ -34,15 +34,14 @@ const CollectibleDetailPage = () => {
 
   return (
     <div>
-      <div className="max-w-2xl mx-auto rounded-lg shadow p-6">
-        <h1 className="text-3xl font-bold mb-4 text-center">
+      <div className="max-w-2xl mx-auto rounded-lg shadow p-4">
+        <h1 className="text-2xl font-bold text-center">
           {collectible.name}
         </h1>
         {/* 3D Model Viewer */}
-        <div className="w-full" style={{ height: '50vh' }}>
-          <ModelViewer src="/cacti.glb" alt={collectible.name} />
+        <div className="w-full" style={{ height: '80vh' }}>
+          <ModelViewer src={collectible.glb} alt={collectible.name} />
         </div>
-        <Text className="text-lg mt-4">{collectible.description}</Text>
       </div>
     </div>
   );

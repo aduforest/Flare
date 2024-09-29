@@ -12,6 +12,7 @@ const ModelViewer = ({ src, alt }) => {
       src={src}
       alt={alt}
       style={{ width: '100%', height: '100%' }}
+      exposure="5" // Increase exposure to make lighting brighter
       camera-controls
       auto-rotate
       ar
