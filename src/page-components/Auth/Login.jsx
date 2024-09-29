@@ -1,3 +1,4 @@
+// pages/login.jsx (or wherever your Login component is located)
 import { Button } from '../../components/Button';
 import { ButtonLink } from '../../components/Button/Button';
 import { Input } from '../../components/Input';
@@ -16,9 +17,11 @@ const Login = () => {
   const passwordRef = useRef();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // State for password visibility
 
   const { data: { user } = {}, mutate, isValidating } = useCurrentUser();
   const router = useRouter();
+
   useEffect(() => {
     if (isValidating) return;
     if (user) router.replace('/');
@@ -45,7 +48,7 @@ const Login = () => {
         setIsLoading(false);
       }
     },
-    [mutate],
+    [mutate]
   );
 
   return (
@@ -63,15 +66,25 @@ const Login = () => {
             required
           />
           <Spacer size={0.5} axis="vertical" />
-          <Input
-            ref={passwordRef}
-            htmlType="password"
-            autoComplete="current-password"
-            placeholder="Password"
-            ariaLabel="Password"
-            size="large"
-            required
-          />
+          <div className={styles.passwordField}>
+            <Input
+              ref={passwordRef}
+              type={showPassword ? 'text' : 'password'} // Toggle input type
+              autoComplete="current-password"
+              placeholder="Password"
+              ariaLabel="Password"
+              size="large"
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className={styles.showPasswordButton}
+            >
+              <Spacer size={0.5} axis="vertical" />
+              {showPassword ? 'Hide' : 'Show'}
+            </button>
+          </div>
           <Spacer size={0.5} axis="vertical" />
           <Button
             htmlType="submit"

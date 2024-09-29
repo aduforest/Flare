@@ -10,7 +10,7 @@ const Footer = () => {
       <Wrapper>
         <Text color="accents-7">
           Made by{' '}
-          <TextLink href="https://unft.com/" color="link">
+          <TextLink href="https://github.com/aduforest" color="link">
             Alex Duforest
           </TextLink>
           .
