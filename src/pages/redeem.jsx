@@ -77,7 +77,7 @@ const RedeemPage = () => {
                 htmlFor="code"
                 className="text-gray-700 font-semibold mb-2"
               >
-                Redeem Your Collectible
+                Redeem Your Flare
               </label>
               <Input
                 id="code"
