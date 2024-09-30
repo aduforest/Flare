@@ -40,7 +40,7 @@ const CollectibleDetailPage = () => {
         </h1>
         {/* 3D Model Viewer */}
         <div className="w-full" style={{ height: '80vh' }}>
-          <ModelViewer src={collectible.glb} alt={collectible.name} />
+          <ModelViewer src={collectible.glb} alt={collectible.name} autoRotate={true} />
         </div>
       </div>
     </div>

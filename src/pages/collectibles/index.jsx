@@ -5,6 +5,12 @@ import { fetcher } from '@/lib/fetch';
 import { Wrapper } from '../../components/Layout';
 import { Text } from '../../components/Text';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+
+// Dynamically import ModelViewer with SSR disabled
+const ModelViewer = dynamic(() => import('../../components/ModelViewer'), {
+  ssr: false,
+});
 
 const UserCollectiblesPage = () => {
   const { data: { user } = {} } = useCurrentUser();
@@ -47,11 +53,25 @@ const UserCollectiblesPage = () => {
               key={item.collectible._id}
             >
               <a className="block shadow hover:shadow-lg transition-shadow duration-200">
-                <img
-                  src={item.collectible.image}
-                  alt={item.collectible.name}
-                  className="h-80 w-60 object-cover rounded-t-lg"
-                />
+                <div className="w-full h-80">
+                  {item.collectible.glb ? (
+                    // Display ModelViewer if GLB file exists
+                    <ModelViewer
+                      src={item.collectible.glb}
+                      alt={item.collectible.name}
+                      autoRotate={true}
+                      cameraControls={false}
+                      style={{ width: '100%', height: '100%' }}
+                    />
+                  ) : (
+                    // Fallback to image if no GLB file
+                    <img
+                      src={item.collectible.image}
+                      alt={item.collectible.name}
+                      className="h-80 w-full object-cover rounded-t-lg"
+                    />
+                  )}
+                </div>
                 <div className="p-4">
                   <Text className="text-lg font-semibold">
                     {item.collectible.name}
