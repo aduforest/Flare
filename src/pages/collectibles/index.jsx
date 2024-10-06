@@ -60,6 +60,7 @@ const UserCollectiblesPage = () => {
                       src={item.collectible.glb}
                       alt={item.collectible.name}
                       autoRotate={true}
+                      rotationPerSecond = "60deg"
                       cameraControls={false}
                       style={{ width: '100%', height: '100%' }}
                     />

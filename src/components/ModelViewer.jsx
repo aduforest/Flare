@@ -6,10 +6,10 @@ const ModelViewer = ({
   alt,
   autoRotate = false,
   cameraControls = true,
+  rotationPerSecond = "15deg",
   style = { width: '100%', height: '100%' },
 }) => {
   useEffect(() => {
-    // Dynamically import '@google/model-viewer' only on the client side
     import('@google/model-viewer');
   }, []);
 
@@ -19,6 +19,7 @@ const ModelViewer = ({
       alt={alt}
       style={style}
       exposure="3"
+      rotation-per-second = {rotationPerSecond}
       auto-rotate={autoRotate ? '' : undefined}
       camera-controls={cameraControls ? '' : undefined}
       ar
