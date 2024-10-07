@@ -150,7 +150,7 @@ const RedeemPage = () => {
             autoPlay
             muted={false}
           >
-            <source src="/travis.webm" type="video/webm" />
+            <source src="/cacti.webm" type="video/webm" />
             {/* Optional fallback for browsers that don't support WebM transparency */}
             {/* <source src="/your_video.mp4" type="video/mp4" /> */}
             Your browser does not support the video tag.
