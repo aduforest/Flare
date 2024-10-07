@@ -53,30 +53,30 @@ const UserCollectiblesPage = () => {
               key={item.collectible._id}
             >
               <a className="block shadow hover:shadow-lg transition-shadow duration-200">
-                <div className="w-full h-80">
-                  {item.collectible.glb ? (
-                    // Display ModelViewer if GLB file exists
-                    <ModelViewer
-                      src={item.collectible.glb}
-                      alt={item.collectible.name}
-                      autoRotate={true}
-                      rotationPerSecond = "60deg"
-                      cameraControls={false}
-                      style={{ width: '100%', height: '100%' }}
-                    />
-                  ) : (
-                    // Fallback to image if no GLB file
-                    <img
-                      src={item.collectible.image}
-                      alt={item.collectible.name}
-                      className="h-80 w-full object-cover rounded-t-lg"
-                    />
-                  )}
-                </div>
-                <div className="p-4">
-                  <Text className="text-lg font-semibold">
-                    {item.collectible.name}
-                  </Text>
+              <div className="flex flex-col items-center">
+                  <div className="w-full h-80">
+                    {item.collectible.glb ? (
+                      <ModelViewer
+                        src={item.collectible.glb}
+                        alt={item.collectible.name}
+                        autoRotate={true}
+                        rotationPerSecond="60deg"
+                        cameraControls={false}
+                        style={{ width: '100%', height: '100%' }}
+                      />
+                    ) : (
+                      <img
+                        src={item.collectible.image}
+                        alt={item.collectible.name}
+                        className="h-80 w-full object-cover rounded-t-lg"
+                      />
+                    )}
+                  </div>
+                  <div className="p-4 text-center">
+                    <Text className="text-lg font-semibold">
+                      {item.collectible.name}
+                    </Text>
+                  </div>
                 </div>
               </a>
             </Link>

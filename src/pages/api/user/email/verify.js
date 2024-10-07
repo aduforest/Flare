@@ -26,7 +26,7 @@ handler.post(async (req, res) => {
   await sendMail({
     to: req.user.email,
     from: MAIL_CONFIG.from,
-    subject: `Verification Email for ${process.env.WEB_URI}`,
+    subject: `Flare Email Verification`,
     html: `
       <div>
         <p>Hello, ${req.user.name}</p>

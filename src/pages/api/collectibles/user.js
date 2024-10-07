@@ -12,7 +12,11 @@ handler.use(...auths);
 handler.get(async (req, res) => {
   const db = await getMongoDb();
 
-  const collectibles = await findCollectiblesByUser(db, req.user._id);
+  // Get the userId from the query parameters, if available, or use the logged-in user's ID
+  const userId = req.query.userId || req.user._id;
+
+  // Fetch collectibles for the user
+  const collectibles = await findCollectiblesByUser(db, userId);
 
   res.json({ collectibles });
 });
