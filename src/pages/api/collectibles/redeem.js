@@ -22,7 +22,6 @@ handler.post(
     additionalProperties: false,
   }),
   async (req, res) => {
-    console.log('req.body:', req.body);
     const db = await getMongoDb();
 
     const { code } = req.body;
