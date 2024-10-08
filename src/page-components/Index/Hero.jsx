@@ -1,14 +1,12 @@
 // page-components/Index/Hero.jsx
 
-// Import necessary modules
 import { ButtonLink } from '../../components/Button';
 import { Container, Spacer, Wrapper } from '../../components/Layout';
 import Link from 'next/link';
 import styles from './Hero.module.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 
-// Dynamically import ModelViewer and Fireworks with SSR disabled
 const ModelViewer = dynamic(() => import('../../components/ModelViewer'), {
   ssr: false,
 });
@@ -18,11 +16,12 @@ const Fireworks = dynamic(() => import('../../components/Fireworks'), {
 });
 
 const Hero = () => {
+  const [triggerFireworks, setTriggerFireworks] = useState(false);
+
   useEffect(() => {
     let gsap;
     let ScrollTrigger;
 
-    // Dynamically import gsap and ScrollTrigger on the client-side
     (async () => {
       const module = await import('gsap');
       gsap = module.gsap || module.default;
@@ -82,29 +81,24 @@ const Hero = () => {
         );
       });
 
-      // Fireworks trigger
-      gsap.to(`.${styles.fireworksContainer}`, {
-        opacity: 1,
-        duration: 1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: `.${styles.fireworksContainer}`,
-          start: 'top center',
-          toggleActions: 'play none none none',
-        },
+      // Trigger fireworks when the user scrolls down to the cannons section
+      ScrollTrigger.create({
+        trigger: `.${styles.cannonsSection}`,
+        start: 'top center',
+        onEnter: () => setTriggerFireworks(true),
+        onLeaveBack: () => setTriggerFireworks(false),
       });
     })();
   }, []);
 
   return (
     <Wrapper className={styles.heroWrapper}>
-      <div className={styles.heroBackground}>
-        {/* Background remains black */}
-      </div>
+      <div className={styles.heroBackground}></div>
       <h1 className={`${styles.title} ${styles.parallax}`}>
         <span className={styles.nextjs}>Flare</span>
         <span className={styles.mongodb}>Collectibles</span>
       </h1>
+
       <Container justifyContent="center" className={styles.buttons}>
         <Container>
           <Link passHref href="/redeem">
@@ -122,7 +116,6 @@ const Hero = () => {
       {/* Gallery Section */}
       <section className={styles.section}>
         <div className={styles.gallery}>
-          {/* GLB Models */}
           <div className={styles.galleryItem}>
             <ModelViewer
               src="/collectibles/cacti.glb"
@@ -145,21 +138,10 @@ const Hero = () => {
               style={{ width: '100%', height: '100%' }}
             />
           </div>
-          <div className={styles.galleryItem}>
-            <ModelViewer
-              src="/collectibles/lebron.glb"
-              alt="LeBron"
-              autoRotate={true}
-              autoRotateDelay="3000"
-              rotationPerSecond="60deg"
-              cameraControls={false}
-              style={{ width: '100%', height: '100%' }}
-            />
-          </div>
         </div>
       </section>
 
-      {/* Text About Future Collaborations */}
+      {/* Future Collaborations Section */}
       <section className={`${styles.section} ${styles.collaborationSection}`}>
         <h2 className={styles.sectionTitle}>
           Future Collaborations
@@ -174,10 +156,25 @@ const Hero = () => {
         </p>
       </section>
 
-      {/* Fireworks Container */}
-      <div className={styles.fireworksContainer}>
-        <Fireworks />
-      </div>
+      {/* Fireworks and Cannons Section */}
+      <section className={`${styles.section} ${styles.cannonsSection}`}>
+        <h2 className={styles.sectionTitle}>
+          🎇 Cannons Ready 🎇
+        </h2>
+        <div className={styles.cannons}>
+          <span role="img" aria-label="Cannon" className={styles.cannonEmoji}>
+            🧨
+          </span>
+          <span role="img" aria-label="Cannon" className={styles.cannonEmoji}>
+            🧨
+          </span>
+        </div>
+
+        {/* Fireworks Triggered on Scroll */}
+        <div className={styles.fireworksContainer}>
+          <Fireworks triggerFireworks={triggerFireworks} />
+        </div>
+      </section>
     </Wrapper>
   );
 };

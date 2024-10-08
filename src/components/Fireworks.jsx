@@ -2,11 +2,13 @@
 
 import { useRef, useEffect } from 'react';
 
-const Fireworks = () => {
+const Fireworks = ({ triggerFireworks }) => {
   const canvasRef = useRef(null);
   let animationFrameId;
 
   useEffect(() => {
+    if (!triggerFireworks) return; // Only trigger fireworks when flag is true
+
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -78,12 +80,12 @@ const Fireworks = () => {
     // Start animation
     animate();
 
-    // Create fireworks periodically
+    // Create fireworks periodically from cannons
     const fireworksInterval = setInterval(() => {
-      createFireworks(
-        Math.random() * canvas.width,
-        canvas.height * 0.9 // Fireworks start closer to the bottom (90% of canvas height)
-      );
+      const cannonPositions = [100, canvas.width - 100]; // Fireworks shot from two cannon positions
+      cannonPositions.forEach((pos) => {
+        createFireworks(pos, canvas.height * 0.9); // Start near the bottom
+      });
     }, 1000);
 
     // Cleanup on unmount
@@ -92,7 +94,7 @@ const Fireworks = () => {
       clearInterval(fireworksInterval);
       window.removeEventListener('resize', resizeCanvas);
     };
-  }, []);
+  }, [triggerFireworks]); // Re-run when the trigger changes
 
   return (
     <canvas

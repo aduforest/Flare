@@ -275,6 +275,29 @@
   z-index: 6; /* Ensure it's beneath all important elements */
 }
 
+.cannonsSection {
+  background-color: #000;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.cannons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.cannonEmoji {
+  font-size: 3rem;
+}
+
+.fireworksContainer {
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+
+
 
 /* Collaboration Section */
 .collaborationSection {
