@@ -1,5 +1,6 @@
 // page-components/Index/Hero.jsx
 
+// Import necessary modules
 import { ButtonLink } from '../../components/Button';
 import { Container, Spacer, Wrapper } from '../../components/Layout';
 import Link from 'next/link';
@@ -7,8 +8,12 @@ import styles from './Hero.module.css';
 import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 
-// Dynamically import ModelViewer with SSR disabled
+// Dynamically import ModelViewer and Fireworks with SSR disabled
 const ModelViewer = dynamic(() => import('../../components/ModelViewer'), {
+  ssr: false,
+});
+
+const Fireworks = dynamic(() => import('../../components/Fireworks'), {
   ssr: false,
 });
 
@@ -46,12 +51,12 @@ const Hero = () => {
 
       // Parallax effect for the title
       gsap.to(`.${styles.parallax}`, {
-        yPercent: -20,
+        yPercent: -10,
         ease: 'none',
         scrollTrigger: {
           trigger: `.${styles.parallax}`,
           start: 'top top',
-          end: 'bottom top',
+          end: '+=300',
           scrub: true,
         },
       });
@@ -75,6 +80,18 @@ const Hero = () => {
             },
           }
         );
+      });
+
+      // Fireworks trigger
+      gsap.to(`.${styles.fireworksContainer}`, {
+        opacity: 1,
+        duration: 1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: `.${styles.fireworksContainer}`,
+          start: 'top center',
+          toggleActions: 'play none none none',
+        },
       });
     })();
   }, []);
@@ -102,11 +119,8 @@ const Hero = () => {
         </Container>
       </Container>
 
-      {/* Updated Gallery Section */}
+      {/* Gallery Section */}
       <section className={styles.section}>
-        <h2 className={styles.sectionTitle} role="img" aria-label="Fire">
-          🔥
-        </h2>
         <div className={styles.gallery}>
           {/* GLB Models */}
           <div className={styles.galleryItem}>
@@ -144,6 +158,26 @@ const Hero = () => {
           </div>
         </div>
       </section>
+
+      {/* Text About Future Collaborations */}
+      <section className={`${styles.section} ${styles.collaborationSection}`}>
+        <h2 className={styles.sectionTitle}>
+          Future Collaborations
+          <span role="img" aria-label="Microphone">
+            🎤
+          </span>
+        </h2>
+        <p className={styles.sectionContent}>
+          Stay tuned for exciting collaborations with top artists and sports
+          leagues. We're bringing you exclusive collectibles and experiences you
+          won't want to miss!
+        </p>
+      </section>
+
+      {/* Fireworks Container */}
+      <div className={styles.fireworksContainer}>
+        <Fireworks />
+      </div>
     </Wrapper>
   );
 };
